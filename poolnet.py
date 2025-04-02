@@ -3,7 +3,10 @@
 import os
 os.system("wget https://perso.esiee.fr/~najmanl/DeepLearning/PoolNet.zip")
 os.system("unzip PoolNet.zip")
-os.system("pip install higra")
+os.system("rm PoolNet.zip")
+
+poolNetDrive = '/content/PoolNet/'
+imgDrive = poolNetDrive + 'Images/'
 
 import torch
 from torch.autograd import Variable
@@ -11,6 +14,7 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
+os.system("pip install higra")
 import higra as hg
 
 from skimage.transform import resize
@@ -38,9 +42,6 @@ from importlib.machinery import SourceFileLoader
 networks = SourceFileLoader('networks', join(poolNetDrive+'networks', '__init__.py')).load_module()
 
 from networks.joint_poolnet import build_model, weights_init
-
-poolNetDrive = '/content/PoolNet/'
-imgDrive = poolNetDrive + 'Images/'
 
 model = torch.load(poolNetDrive+'final.pth')
 
