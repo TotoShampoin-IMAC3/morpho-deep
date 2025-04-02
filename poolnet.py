@@ -1,4 +1,5 @@
-#!/usr/bin/python
+# SOURCE: https://colab.research.google.com/drive/1bUFH6F6nP6ole7sQoD6lNk0dAFgZdMAm
+
 import os
 os.system("wget https://perso.esiee.fr/~najmanl/DeepLearning/PoolNet.zip")
 os.system("unzip PoolNet.zip")
