@@ -23,14 +23,6 @@ try:
 except: # we are probably running from the cloud, try to fetch utils functions from URL
     import urllib.request as request; exec(request.urlopen('https://github.com/higra/Higra-Notebooks/raw/master/utils.py').read(), globals())
 
-from os.path import join
-from importlib.machinery import SourceFileLoader
-
-from networks.joint_poolnet import build_model, weights_init
-
-poolNetDrive = '/content/PoolNet/'
-imgDrive = poolNetDrive + 'Images/'
-
 # ==============================================================================
 
 edgedetector = cv2.ximgproc.createStructuredEdgeDetection(get_sed_model_file())
@@ -40,7 +32,15 @@ def computeEdgesSED(img):
   return edges
 
 # ==============================================================================
+
+from os.path import join
+from importlib.machinery import SourceFileLoader
 networks = SourceFileLoader('networks', join(poolNetDrive+'networks', '__init__.py')).load_module()
+
+from networks.joint_poolnet import build_model, weights_init
+
+poolNetDrive = '/content/PoolNet/'
+imgDrive = poolNetDrive + 'Images/'
 
 model = torch.load(poolNetDrive+'final.pth')
 
